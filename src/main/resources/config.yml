@@ -1,0 +1,35 @@
+use-shopguiplus: true
+
+default-uses: 20
+
+sell-message: "You sold the items of the chest for $%total%"
+
+no-perm-message: "You do not have permission to run %cmd%. Perm: %perm%"
+
+item:
+  id: diamond_hoe
+  lore:
+    - "&6Price bonus: %bonus%"
+    - "&6Uses left: %uses%"
+
+wands:
+  sponsor:
+    display-name: "&bSponsor &3Sell-Wand"
+    bonus: 1.20
+    custom-model-data: 1
+  earthgod:
+    display-name: "&6EarthGod &3Sell-Wand"
+    bonus: 1.17
+    custom-model-data: 2
+  legend:
+    display-name: "&9Legend &3Sell-Wand"
+    bonus: 1.14
+    custom-model-data: 3
+  elite:
+    display-name: "&eElite &3Sell-Wand"
+    bonus: 1.11
+    custom-model-data: 4
+  vip:
+    display-name: "&aVIP &9Sell-Wand"
+    bonus: 1.08
+    custom-model-data: 5

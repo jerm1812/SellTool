@@ -1,0 +1,13 @@
+name: SellTool
+version: @version@
+main: me.baryonyx.selltool.SellTool
+api-version: 1.13
+authors: [Jerm1812]
+description: A plugin to allow you to sell items from a chest using a tool
+softdepend: [ShopGUIPlus, Vault, GriefPrevention]
+commands:
+  selltool:
+    description: Command for sell tools
+    aliases: [st]
+    permission: selltools.admin
+    usage: /st [give] [player] [tool type] {uses}
