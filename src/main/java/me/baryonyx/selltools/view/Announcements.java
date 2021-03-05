@@ -1,4 +1,4 @@
-package me.baryonyx.selltool.view;
+package me.baryonyx.selltools.view;
 
 import org.bukkit.ChatColor;
 import org.jetbrains.annotations.NotNull;

@@ -1,8 +1,8 @@
-package me.baryonyx.selltool.tools;
+package me.baryonyx.selltools.tools;
 
-import me.baryonyx.selltool.SellTool;
-import me.baryonyx.selltool.configuration.Config;
-import me.baryonyx.selltool.view.Announcements;
+import me.baryonyx.selltools.SellTools;
+import me.baryonyx.selltools.configuration.Config;
+import me.baryonyx.selltools.view.Announcements;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -21,7 +21,7 @@ public class ItemHandler {
     private NamespacedKey usesKey;
     private NamespacedKey typeKey;
 
-    public ItemHandler(SellTool plugin, Config config) {
+    public ItemHandler(SellTools plugin, Config config) {
         this.config = config;
 
         usesKey = new NamespacedKey(plugin, "uses");

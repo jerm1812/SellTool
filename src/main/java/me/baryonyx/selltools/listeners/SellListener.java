@@ -1,13 +1,12 @@
-package me.baryonyx.selltool.listeners;
+package me.baryonyx.selltools.listeners;
 
-import me.baryonyx.selltool.SellTool;
-import me.baryonyx.selltool.configuration.Config;
-import me.baryonyx.selltool.hooks.GriefPreventionHook;
-import me.baryonyx.selltool.hooks.ShopGuiPlusHook;
-import me.baryonyx.selltool.hooks.VaultHook;
-import me.baryonyx.selltool.tools.ItemHandler;
+import me.baryonyx.selltools.SellTools;
+import me.baryonyx.selltools.configuration.Config;
+import me.baryonyx.selltools.hooks.*;
+import me.baryonyx.selltools.tools.ItemHandler;
 import net.brcdev.shopgui.ShopGuiPlusApi;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,11 +18,11 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class SellListener implements Listener {
-    private SellTool plugin;
+    private SellTools plugin;
     private Config config;
     private ItemHandler itemHandler;
 
-    public SellListener(SellTool plugin, Config config, ItemHandler itemHandler) {
+    public SellListener(SellTools plugin, Config config, ItemHandler itemHandler) {
         this.plugin = plugin;
         this.config = config;
         this.itemHandler = itemHandler;
@@ -33,17 +32,17 @@ public class SellListener implements Listener {
     public void chestClickEvent(@NotNull PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getClickedBlock().getType() == Material.CHEST && event.getItem() != null && itemHandler.isSellWand(event.getItem())) {
             Chest chest = (Chest) event.getClickedBlock().getState();
+            Block block = event.getClickedBlock();
             Inventory inventory = chest.getInventory();
             Player player = event.getPlayer();
+            event.setCancelled(true);
 
             if (inventory.isEmpty()) {
-                event.setCancelled(true);
                 return;
             }
 
-            if (GriefPreventionHook.isHooked && !GriefPreventionHook.canSell(player, chest)) {
+            if (!canSell(player, block, chest)) {
                 player.sendMessage("You cannot sell here! This chest is protected.");
-                event.setCancelled(true);
                 return;
             }
 
@@ -51,7 +50,6 @@ public class SellListener implements Listener {
                 decrementUses(event.getItem(), player.getInventory());
             }
 
-            event.setCancelled(true);
         }
     }
 
@@ -95,5 +93,12 @@ public class SellListener implements Listener {
         else {
             itemHandler.setItemUses(item, uses);
         }
+    }
+
+    private boolean canSell(Player player, Block block, Chest chest) {
+        return (!BentoboxHook.isHooked || BentoboxHook.canSell(player, chest)) &&
+                (!GriefPreventionHook.isHooked || GriefPreventionHook.canSell(player, chest)) &&
+                (!ChestShopHook.isHooked || ChestShopHook.canSell(player, block)) &&
+                (!LWCHook.isHooked || LWCHook.canSell(player, block));
     }
 }

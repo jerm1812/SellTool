@@ -1,13 +1,30 @@
-name: SellTool
+name: SellTools
 version: @version@
-main: me.baryonyx.selltool.SellTool
+main: me.baryonyx.selltools.SellTools
 api-version: 1.13
 authors: [Jerm1812]
 description: A plugin to allow you to sell items from a chest using a tool
-softdepend: [ShopGUIPlus, Vault, GriefPrevention]
+softdepend: [ShopGUIPlus, Vault, GriefPrevention, LWC, ChestShop, BentoBox]
 commands:
-  selltool:
+  selltools:
     description: Command for sell tools
     aliases: [st]
-    permission: selltools.admin
+    permission: selltools.give
     usage: /st [give] [player] [tool type] {uses}
+
+permissions:
+  selltools.*:
+    description: Gives access to all sell tool commands
+    children:
+      selltools.use: true
+      selltools.reload: true
+      selltools.give: true
+
+  selltools.use:
+    description: Allows players to use the sell tools
+
+  selltools.reload:
+    description: Allows a player to reload the config
+
+  selltools.give:
+    description: Allows a player to give sell tools

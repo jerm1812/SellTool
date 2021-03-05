@@ -1,11 +1,10 @@
-package me.baryonyx.selltool.commands;
+package me.baryonyx.selltools.commands;
 
-import me.baryonyx.selltool.SellTool;
-import me.baryonyx.selltool.configuration.Config;
-import me.baryonyx.selltool.tools.ItemHandler;
-import me.baryonyx.selltool.utils.Permissions;
+import me.baryonyx.selltools.SellTools;
+import me.baryonyx.selltools.configuration.Config;
+import me.baryonyx.selltools.tools.ItemHandler;
+import me.baryonyx.selltools.utils.Permissions;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
@@ -14,16 +13,15 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MainCommand implements TabExecutor {
-    private SellTool plugin;
+    private SellTools plugin;
     private Config config;
     private ItemHandler itemHandler;
 
-    public MainCommand(SellTool plugin, Config config, ItemHandler itemHandler) {
+    public MainCommand(SellTools plugin, Config config, ItemHandler itemHandler) {
         this.plugin = plugin;
         this.config = config;
         this.itemHandler = itemHandler;
@@ -109,7 +107,7 @@ public class MainCommand implements TabExecutor {
     private void reloadCommand(CommandSender sender) {
         if (sender.hasPermission(Permissions.reload)) {
             config.reload();
-            sender.sendMessage("SellTool has reloaded!");
+            sender.sendMessage("SellTools has reloaded!");
         }
         else {
             sender.sendMessage(config.getNoPermMessage().replace("%perm%", Permissions.reload).replace("%cmd%", "/st reload"));

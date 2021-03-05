@@ -1,6 +1,6 @@
-package me.baryonyx.selltool.configuration;
+package me.baryonyx.selltools.configuration;
 
-import me.baryonyx.selltool.SellTool;
+import me.baryonyx.selltools.SellTools;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -10,10 +10,10 @@ import java.io.File;
 import java.util.Set;
 
 public class Config {
-    private SellTool plugin;
+    private SellTools plugin;
     private FileConfiguration config;
 
-    public Config(SellTool plugin) {
+    public Config(SellTools plugin) {
         this.plugin = plugin;
         plugin.saveDefaultConfig();
         config = plugin.getConfig();

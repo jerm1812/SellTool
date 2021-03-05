@@ -1,6 +1,6 @@
-package me.baryonyx.selltool.hooks;
+package me.baryonyx.selltools.hooks;
 
-import me.baryonyx.selltool.SellTool;
+import me.baryonyx.selltools.SellTools;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import org.bukkit.block.Chest;
@@ -10,7 +10,7 @@ import org.bukkit.plugin.Plugin;
 public class GriefPreventionHook {
     public static boolean isHooked = false;
 
-    public static void hook(SellTool plugin) {
+    public static void hook(SellTools plugin) {
         Plugin gp = plugin.getServer().getPluginManager().getPlugin("GriefPrevention");
 
         if (gp == null) {
