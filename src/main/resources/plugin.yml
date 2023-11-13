@@ -1,7 +1,7 @@
 name: SellTools
-version: @version@
+version: 1.0.1
 main: me.baryonyx.selltools.SellTools
-api-version: 1.13
+api-version: 1.20
 authors: [Jerm1812]
 description: A plugin to allow you to sell items from a chest using a tool
 softdepend: [ShopGUIPlus, Vault, GriefPrevention, LWC, ChestShop, BentoBox]
